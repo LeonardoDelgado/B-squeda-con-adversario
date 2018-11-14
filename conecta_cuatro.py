@@ -42,19 +42,7 @@ class conecta_cuatro:
                 self.mensaje = False
         else:
             self.movimientos_disponibles()
-            self.mensaje = self.mensaje_tirada_invalida 
-    
-    def iniciar_simulacion(self):
-        self.simulando = True
-        self.copia_tablero = copy.deepcopy(self.tablero) 
-        self.copia_mov_disponibles = copy.deepcopy(self.mov_disponibles)
-        self.copia_indice = copy.deepcopy(self.indice)
-    
-    def parar_simulacion(self):
-        self.simulando = False
-        self.tablero = copy.deepcopy(self.copia_tablero) 
-        self.mov_disponibles = copy.deepcopy(self.copia_mov_disponibles)
-        self.indice = copy.deepcopy(self.copia_indice)
+            self.mensaje = self.mensaje_tirada_invalida    
     
     def obtener_entorno(self):
         return self.tablero,self.movimientos_disponibles(),self.indice
@@ -71,6 +59,9 @@ class conecta_cuatro:
             return False
 
     def juego_terminado(self):
+        if np.suma(self.mov_disponibles) == 0:
+            return 3
+        
         for fila in range(self.FILAS):
             for columna in range(self.COLUMNAS-3):
                 temp = np.array(copy.deepcopy(self.tablero[fila,columna:columna+4]))
