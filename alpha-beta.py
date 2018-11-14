@@ -23,9 +23,6 @@ class alphabetha:
         nivel = 0
         jugador = False
         while(not(queue[0][2]) or queue[1][1] == queue[1][4]):
-            #print('nivel: ', nivel,' Valor:', queue[nivel][5],self.nivel)
-            #1
-            #print(self.mundo.tablero)
             if queue[nivel-1][2] and queue[nivel][2]:
                 if jugador:
                     if queue[nivel-1][2]<=queue[nivel][2]:
