@@ -23,9 +23,6 @@ class minimax:
         nivel = 0
         jugador = False
         while(not(queue[0][2]) or queue[1][1] == queue[1][4]):
-            #print('nivel: ', nivel,' Valor:', queue[nivel][5],self.nivel)
-            #1
-            #0print(self.mundo.tablero)
             if nivel != self.nivel:
                 if queue[nivel][1] != queue[nivel][4]:
                     self.mundo.tirar(queue[nivel][3][queue[nivel][1]],self.jugador[int(jugador)])
@@ -116,7 +113,6 @@ class minimax:
                             self.mundo.establecer_entorno(copy.deepcopy(queue[nivel][0]))
                             self.actualizar = True
                             queue.pop()
-        print(queue[0][5])
         return queue[1][3][queue[1][5]]
                 
     def optener_valores(self):
@@ -135,7 +131,7 @@ class minimax:
                 temp = np.array(copy.deepcopy(self.mundo.tablero[fila,columna:columna+4]))
                 acomulador += (np.sum(temp)/2)*min(temp)-(np.sum(abs(temp-2))/2)*min(abs(temp-2))
                 if np.sum(temp) == 0:
-                    return 0
+                    return -100
 
         
         valor_tablero = acomulador
@@ -145,7 +141,7 @@ class minimax:
                 temp = np.array(copy.deepcopy(self.mundo.tablero[fila:fila+4,columna]))
                 acomulador += (np.sum(temp)/2)*min(temp)-(np.sum(abs(temp-2))/2)*min(abs(temp-2))
                 if np.sum(temp) == 0:
-                    return 0
+                    return -100
         
         valor_tablero = acomulador
         t = copy.deepcopy(self.mundo.tablero)
@@ -155,7 +151,7 @@ class minimax:
                 temp = np.array(copy.deepcopy([t[fila,columna],t[fila+1,columna+1],t[fila+2,columna+2],t[fila+3,columna+3]]))
                 acomulador += (np.sum(temp)/2)*min(temp)-(np.sum(abs(temp-2))/2)*min(abs(temp-2))  
                 if np.sum(temp) == 0:
-                    return 0
+                    return -100
                 
         valor_tablero = acomulador
         t = copy.deepcopy(self.mundo.tablero)
@@ -165,7 +161,7 @@ class minimax:
                 temp = np.array(copy.deepcopy([t[fila,columna],t[fila+1,columna-1],t[fila+2,columna-2],t[fila+3,columna-3]]))
                 acomulador += (np.sum(temp)/2)*min(temp)-(np.sum(abs(temp-2))/2)*min(abs(temp-2))   
                 if np.sum(temp) == 0:
-                    return 0
+                    return -100
         valor_tablero = acomulador
         return valor_tablero
     
@@ -183,4 +179,5 @@ if __name__ == '__main__':
             conecta_4.tirar(x,0)
         print(conecta_4.tablero)
         jugador = not(jugador)
+        print('Minimax')
     print('gano jugador: ',conecta_4.juego_terminado())
