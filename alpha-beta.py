@@ -133,7 +133,6 @@ class alphabetha:
                             self.mundo.establecer_entorno(copy.deepcopy(queue[nivel][0]))
                             self.actualizar = True
                             queue.pop()
-        print(queue[0][5])
         return queue[1][3][queue[1][5]]
                 
     def optener_valores(self):
@@ -200,5 +199,5 @@ if __name__ == '__main__':
             conecta_4.tirar(x,0)
         print(conecta_4.tablero)
         jugador = not(jugador)
-        print('Alpha-Betha')
+        print('Alpha-Beta')
     print('gano jugador: ',conecta_4.juego_terminado())
