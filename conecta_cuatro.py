@@ -59,7 +59,7 @@ class conecta_cuatro:
             return False
 
     def juego_terminado(self):
-        if np.suma(self.mov_disponibles) == 0:
+        if np.sum(self.mov_disponibles) == 0:
             return 3
         
         for fila in range(self.FILAS):
